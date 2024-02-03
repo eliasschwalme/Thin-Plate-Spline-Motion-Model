@@ -23,6 +23,7 @@ def relative_kp(kp_source, kp_driving, kp_driving_initial):
     source_area = ConvexHull(kp_source['fg_kp'][0].data.cpu().numpy()).volume
     driving_area = ConvexHull(kp_driving_initial['fg_kp'][0].data.cpu().numpy()).volume
     adapt_movement_scale = np.sqrt(source_area) / np.sqrt(driving_area)
+    adapt_movement_scale = np.sqrt(source_area) / np.sqrt(driving_area_spline)
 
     kp_new = {k: v for k, v in kp_driving.items()}
 
